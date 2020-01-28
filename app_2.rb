@@ -38,10 +38,22 @@ while user.life_points > 0 && (player1.life_points > 0 || player2.life_points > 
   elsif key == "1"
     user.attacks(player2)
   end
-puts "Les autres joueurs t'attaquent !"
-  ennemies.each do |player|
-    if player.life_points > 0
-      player.attacks(user)
+  if player1.life_points > 0 || player2.life_points > 0
+    puts "Les autres joueurs t'attaquent !"
+    ennemies.each do |player|
+      if player.life_points > 0
+        player.attacks(user)
+      end
     end
+  end
+  if player1.life_points <= 0 && player2.life_points <= 0
+    puts "#{user.name} est le vainceur !!!!"
+  elsif user.life_points <= 0
+    puts " -----------------------"
+    puts "|      GAME OVER        |"
+    puts " -----------------------"
+    puts "Restant en vie :"
+    puts player1.show_state
+    puts player2.show_state
   end
 end
